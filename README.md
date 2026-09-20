@@ -1,5 +1,12 @@
 # AeroTwin: AI-Based Digital Twin for UAV Engine Health Monitoring
 
+[![Live Demo](https://img.shields.io/badge/LIVE%20DEMO-AeroTwin%20Dashboard-0284c7?style=for-the-badge&logo=googlechrome&logoColor=white)](https://mallikarjuna2607.github.io/Aero-Twin/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/mallikarjuna2607/Aero-Twin)
+[![Problem Statement](https://img.shields.io/badge/DRDO%20%2F%20SIH-SIH26054-blue?style=for-the-badge)](https://github.com/mallikarjuna2607/Aero-Twin)
+
+> 🌐 **Live Interactive Website**: **[https://mallikarjuna2607.github.io/Aero-Twin/](https://mallikarjuna2607.github.io/Aero-Twin/)**  
+> 📂 **GitHub Repository**: **[https://github.com/mallikarjuna2607/Aero-Twin](https://github.com/mallikarjuna2607/Aero-Twin)**
+
 ### DRDO / Smart India Hackathon Problem Statement SIH26054
 **"AI-Enabled Real-Time Digital Twin System for Health Monitoring, Fault Prediction and Mission Reliability Enhancement of Aero Piston Engines used in MALE UAVs."**
 
