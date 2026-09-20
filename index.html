@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroTwin - UAV Engine Health Digital Twin</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- LEFT NAVIGATION SIDEBAR -->
+    <aside class="sidebar">
+      <div class="brand-section">
+        <div class="brand-title">
+          <span>AEROTWIN</span>
+          <span class="brand-badge">DRDO/SIH</span>
+        </div>
+        <div class="brand-subtitle">UAV Engine Digital Twin</div>
+      </div>
+
+      <!-- 10 SIMPLE NAVIGATION TABS -->
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <button class="nav-btn active" data-tab="tab-home">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" data-tab="tab-live">
+            <span class="nav-icon">📊</span>
+            <span>Live Monitor</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" data-tab="tab-health">
+            <span class="nav-icon">❤️</span>
+            <span>Engine Health</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" data-tab="tab-faults">
+            <span class="nav-icon">⚠️</span>
+            <span>Faults</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" data-tab="tab-predictions">
+            <span class="nav-icon">📈</span>
+            <span>Predictions</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" data-tab="tab-mission">
+            <span class="nav-icon">✈️</span>
+            <span>Mission</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" data-tab="tab-replay">
+            <span class="nav-icon">🔄</span>
+            <span>Replay</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" data-tab="tab-maintenance">
+            <span class="nav-icon">🔧</span>
+            <span>Maintenance</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" data-tab="tab-data">
+            <span class="nav-icon">📁</span>
+            <span>Data</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" data-tab="tab-settings">
+            <span class="nav-icon">⚙️</span>
+            <span>Settings</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <span>MALE-UAV PISTON TWIN</span>
+        <span>v1.0</span>
+      </div>
+    </aside>
+
+    <!-- MAIN COCKPIT DISPLAY -->
+    <main class="main-wrapper">
+      
+      <!-- TOP STATUS HEADER -->
+      <header class="top-header">
+        <div class="header-left">
+          <div class="page-heading" id="activePageHeading">🏠 Home</div>
+          <span class="target-badge">MALE-UAV Aero-Piston Engine</span>
+        </div>
+        <div class="header-right">
+          <div class="status-indicator-box">
+            <span class="beacon-dot" id="engineBeaconDot"></span>
+            <span id="engineStatusBadge">ENGINE ONLINE</span>
+          </div>
+          <div class="clock-display" id="utcClockDisplay">12:00:00 UTC</div>
+        </div>
+      </header>
+
+      <div class="content-body">
+        
+        <!-- ========================================== -->
+        <!-- TAB 1: 🏠 HOME OVERVIEW                    -->
+        <!-- ========================================== -->
+        <section id="tab-home" class="tab-content active">
+          
+          <div class="hud-grid">
+            <!-- Rotating Turbine Engine Visual Card -->
+            <div class="hud-card engine-visual-card" style="grid-column: span 4;">
+              <div class="card-title-row">
+                <span class="card-title">⚙️ Aero-Piston Turbine</span>
+                <span class="brand-badge">REAL-TIME</span>
+              </div>
+              <div class="turbine-display-wrap">
+                <svg class="turbine-svg" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="46" fill="none" stroke="#1e293b" stroke-width="4"/>
+                  <circle cx="50" cy="50" r="40" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+                  <!-- Rotating Blade Group -->
+                  <g id="engineTurbineBlade" class="rotating-turbine">
+                    <path d="M50 50 L50 14 A6 6 0 0 1 54 20 Z" fill="#38bdf8" opacity="0.85"/>
+                    <path d="M50 50 L75 25 A6 6 0 0 1 79 31 Z" fill="#38bdf8" opacity="0.85"/>
+                    <path d="M50 50 L86 50 A6 6 0 0 1 80 54 Z" fill="#38bdf8" opacity="0.85"/>
+                    <path d="M50 50 L75 75 A6 6 0 0 1 69 79 Z" fill="#38bdf8" opacity="0.85"/>
+                    <path d="M50 50 L50 86 A6 6 0 0 1 46 80 Z" fill="#38bdf8" opacity="0.85"/>
+                    <path d="M50 50 L25 75 A6 6 0 0 1 21 69 Z" fill="#38bdf8" opacity="0.85"/>
+                    <path d="M50 50 L14 50 A6 6 0 0 1 20 46 Z" fill="#38bdf8" opacity="0.85"/>
+                    <path d="M50 50 L25 25 A6 6 0 0 1 31 21 Z" fill="#38bdf8" opacity="0.85"/>
+                    <circle cx="50" cy="50" r="14" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="6" fill="#f8fafc"/>
+                  </g>
+                </svg>
+                <div class="turbine-rpm-readout">
+                  <span class="rpm-big-number smooth-metric" id="valRpm">2350</span>
+                  <span class="rpm-unit">RPM</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Glowing Engine Health Ring Card -->
+            <div class="hud-card" style="grid-column: span 4;">
+              <div class="card-title-row">
+                <span class="card-title">❤️ Engine Health</span>
+                <span class="brand-badge">COMPOSITE AI</span>
+              </div>
+              <div class="health-ring-wrap">
+                <svg class="health-svg" width="140" height="140" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#1e293b" stroke-width="10"/>
+                  <circle id="healthCircleProgress" class="health-circle-bar" cx="60" cy="60" r="54" fill="none"
+                          stroke="#22c55e" stroke-width="10" stroke-dasharray="339.29" stroke-dashoffset="20.35"
+                          stroke-linecap="round"/>
+                </svg>
+                <div class="health-ring-text">
+                  <div class="health-score-val smooth-metric" id="healthScoreText">94%</div>
+                  <div class="health-condition-tag normal" id="healthBadgeText">NORMAL</div>
+                </div>
+              </div>
+              <div style="text-align: center; margin-top: 14px; font-size: 12px; color: #94a3b8;">
+                Degradation Rate: <span style="color: #22c55e; font-weight:600;">-0.38%/hr</span>
+              </div>
+            </div>
+
+            <!-- Digital Twin Synchronization & Difference Card -->
+            <div class="hud-card" style="grid-column: span 4;">
+              <div class="card-title-row">
+                <span class="card-title">🔄 Digital Twin Sync</span>
+                <span class="brand-badge">PHYSICS MODEL</span>
+              </div>
+              
+              <div class="sync-bar-container">
+                <div class="sync-bar-header">
+                  <span>Twin Synchronization</span>
+                  <span id="twinSyncText" style="color: #38bdf8;">95.2%</span>
+                </div>
+                <div class="sync-progress-track">
+                  <div class="sync-progress-fill" id="twinSyncFill" style="width: 95%;"></div>
+                </div>
+              </div>
+
+              <!-- Twin Difference Table -->
+              <div class="twin-comparison-grid">
+                <div class="twin-side">
+                  <div class="twin-side-label">Actual Sensor</div>
+                  <div class="twin-side-val" style="color: #38bdf8;" id="valCht">171.0 °C</div>
+                </div>
+                <div class="twin-delta-badge" id="twinDiffCht">0.4 Δ</div>
+                <div class="twin-side">
+                  <div class="twin-side-label">Twin Model</div>
+                  <div class="twin-side-val" style="color: #94a3b8;" id="twinExpCht">170.6 °C</div>
+                </div>
+              </div>
+
+              <div style="margin-top: 12px; font-size: 11px; color: #64748b; text-align: center;">
+                Twin Difference = Actual Physical Sensor - Digital Twin Model
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Essential Telemetry Grid -->
+          <div class="hud-grid">
+            <div class="sensor-metric-card" style="grid-column: span 3;">
+              <span class="sensor-name">Cylinder Head Temp (CHT)</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="valChtCard">171.0</span>
+                <span class="sensor-unit">°C (Max: 200)</span>
+              </div>
+            </div>
+
+            <div class="sensor-metric-card" style="grid-column: span 3;">
+              <span class="sensor-name">Exhaust Gas Temp (EGT)</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="valEgt">648.0</span>
+                <span class="sensor-unit">°C (Max: 740)</span>
+              </div>
+            </div>
+
+            <div class="sensor-metric-card" style="grid-column: span 3;">
+              <span class="sensor-name">Oil Pressure</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="valOilPress">4.20</span>
+                <span class="sensor-unit">bar (Min: 2.2)</span>
+              </div>
+            </div>
+
+            <div class="sensor-metric-card" style="grid-column: span 3;">
+              <span class="sensor-name">Vibration (RMS)</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="valVib">2.10</span>
+                <span class="sensor-unit">mm/s (Max: 5.0)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-Time Waveform Strip Chart -->
+          <div class="hud-card">
+            <div class="card-title-row">
+              <span class="card-title">📈 Live Engine Sensor Telemetry Strip</span>
+              <div style="display: flex; gap: 14px; font-size: 11px; font-weight: 600;">
+                <span style="color: #38bdf8;">● RPM</span>
+                <span style="color: #f97316;">● CHT (°C)</span>
+                <span style="color: #22c55e;">● Oil Press (bar)</span>
+                <span style="color: #c084fc;">● Vibration (mm/s)</span>
+              </div>
+            </div>
+            <div style="width: 100%; height: 220px; position: relative;">
+              <canvas id="liveTelemetryCanvas" style="width: 100%; height: 100%;"></canvas>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 2: 📊 LIVE MONITOR (10 PARAMETERS)    -->
+        <!-- ========================================== -->
+        <section id="tab-live" class="tab-content">
+          <div class="hud-grid">
+            <div class="sensor-metric-card" style="grid-column: span 4;">
+              <span class="sensor-name">Engine RPM</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="liveRpm">2350</span>
+                <span class="sensor-unit">RPM</span>
+              </div>
+            </div>
+            <div class="sensor-metric-card" style="grid-column: span 4;">
+              <span class="sensor-name">Cylinder Head Temp (CHT)</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="liveCht">171.0</span>
+                <span class="sensor-unit">°C</span>
+              </div>
+            </div>
+            <div class="sensor-metric-card" style="grid-column: span 4;">
+              <span class="sensor-name">Exhaust Gas Temp (EGT)</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="liveEgt">648.0</span>
+                <span class="sensor-unit">°C</span>
+              </div>
+            </div>
+
+            <div class="sensor-metric-card" style="grid-column: span 4;">
+              <span class="sensor-name">Oil Pressure</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="liveOilPress">4.20</span>
+                <span class="sensor-unit">bar</span>
+              </div>
+            </div>
+            <div class="sensor-metric-card" style="grid-column: span 4;">
+              <span class="sensor-name">Oil Temperature</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="liveOilTemp">92.0</span>
+                <span class="sensor-unit">°C</span>
+              </div>
+            </div>
+            <div class="sensor-metric-card" style="grid-column: span 4;">
+              <span class="sensor-name">Fuel Flow Rate</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="liveFuel">18.4</span>
+                <span class="sensor-unit">L/h</span>
+              </div>
+            </div>
+
+            <div class="sensor-metric-card" style="grid-column: span 4;">
+              <span class="sensor-name">Vibration (RMS)</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="liveVib">2.10</span>
+                <span class="sensor-unit">mm/s</span>
+              </div>
+            </div>
+            <div class="sensor-metric-card" style="grid-column: span 4;">
+              <span class="sensor-name">UAV Altitude</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="liveAltitude">10,000</span>
+                <span class="sensor-unit">ft</span>
+              </div>
+            </div>
+            <div class="sensor-metric-card" style="grid-column: span 4;">
+              <span class="sensor-name">Ambient Temperature</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="liveAmbientTemp">18.0</span>
+                <span class="sensor-unit">°C</span>
+              </div>
+            </div>
+
+            <div class="sensor-metric-card" style="grid-column: span 12;">
+              <span class="sensor-name">Engine Throttle Load</span>
+              <div class="sensor-val-row">
+                <span class="sensor-number smooth-metric" id="liveEngineLoad">72</span>
+                <span class="sensor-unit">% Full Throttle Power</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 3: ❤️ ENGINE HEALTH & SUBSYSTEMS       -->
+        <!-- ========================================== -->
+        <section id="tab-health" class="tab-content">
+          <div class="hud-grid">
+            <div class="hud-card" style="grid-column: span 6;">
+              <div class="card-title-row">
+                <span class="card-title">Subsystem Health Indices</span>
+              </div>
+
+              <div class="explanation-bar-item">
+                <div class="explanation-header">
+                  <span>🔥 Thermal Subsystem (Cooling & Baffles)</span>
+                  <span id="subThermalVal">95%</span>
+                </div>
+                <div class="explanation-track">
+                  <div id="subThermalBar" class="explanation-fill" style="width: 95%; background:#22c55e;"></div>
+                </div>
+              </div>
+
+              <div class="explanation-bar-item">
+                <div class="explanation-header">
+                  <span>🛢️ Lubrication Subsystem (Oil Pump & Sump)</span>
+                  <span id="subLubricationVal">96%</span>
+                </div>
+                <div class="explanation-track">
+                  <div id="subLubricationBar" class="explanation-fill" style="width: 96%; background:#22c55e;"></div>
+                </div>
+              </div>
+
+              <div class="explanation-bar-item">
+                <div class="explanation-header">
+                  <span>⚙️ Mechanical Assembly (Journal Bearings)</span>
+                  <span id="subMechanicalVal">94%</span>
+                </div>
+                <div class="explanation-track">
+                  <div id="subMechanicalBar" class="explanation-fill" style="width: 94%; background:#22c55e;"></div>
+                </div>
+              </div>
+
+              <div class="explanation-bar-item">
+                <div class="explanation-header">
+                  <span>⚡ Combustion & Fuel Injection</span>
+                  <span id="subCombustionVal">95%</span>
+                </div>
+                <div class="explanation-track">
+                  <div id="subCombustionBar" class="explanation-fill" style="width: 95%; background:#22c55e;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hud-card" style="grid-column: span 6;">
+              <div class="card-title-row">
+                <span class="card-title">Early Warning State Cascade</span>
+              </div>
+              <p style="font-size: 13px; color: #94a3b8; line-height: 1.6;">
+                The health engine classifies operational status into 4 distinct safety zones:
+              </p>
+              <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+                <div style="padding: 10px 14px; border-radius: 8px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); display:flex; justify-content:space-between;">
+                  <span style="color:#22c55e; font-weight:700;">🟢 NORMAL (90 - 100%)</span>
+                  <span style="font-size:12px; color:#cbd5e1;">Nominal cruise, no anomalies</span>
+                </div>
+                <div style="padding: 10px 14px; border-radius: 8px; background: rgba(234,179,8,0.1); border: 1px solid rgba(234,179,8,0.3); display:flex; justify-content:space-between;">
+                  <span style="color:#eab308; font-weight:700;">🟡 WATCH (80 - 89%)</span>
+                  <span style="font-size:12px; color:#cbd5e1;">Mild drift, increase logging rate</span>
+                </div>
+                <div style="padding: 10px 14px; border-radius: 8px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3); display:flex; justify-content:space-between;">
+                  <span style="color:#f97316; font-weight:700;">🟠 WARNING (65 - 79%)</span>
+                  <span style="font-size:12px; color:#cbd5e1;">Significant anomaly, plan abort/recovery</span>
+                </div>
+                <div style="padding: 10px 14px; border-radius: 8px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); display:flex; justify-content:space-between;">
+                  <span style="color:#ef4444; font-weight:700;">🔴 CRITICAL (&lt; 65%)</span>
+                  <span style="font-size:12px; color:#cbd5e1;">Immediate emergency descent required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 4: ⚠️ FAULTS & INJECTION               -->
+        <!-- ========================================== -->
+        <section id="tab-faults" class="tab-content">
+          
+          <!-- Fault Injection Demo Panel -->
+          <div class="hud-card" style="margin-bottom: 20px;">
+            <div class="card-title-row">
+              <span class="card-title">🧪 Interactive Fault Injection (Demo Control)</span>
+              <span class="brand-badge">HACKATHON SHOWCASE</span>
+            </div>
+            <p style="font-size: 13px; color: #94a3b8;">
+              Click any scenario button below to inject an immediate fault into the physics engine and observe AI detection:
+            </p>
+            <div class="fault-btn-grid">
+              <button class="fault-btn reset-btn" data-fault="RESET">✅ Reset to Normal</button>
+              <button class="fault-btn" data-fault="OVERHEATING">🔥 Overheating</button>
+              <button class="fault-btn" data-fault="LOW_OIL_PRESSURE">🛢️ Low Oil Pressure</button>
+              <button class="fault-btn" data-fault="HIGH_VIBRATION">⚡ High Vibration</button>
+              <button class="fault-btn" data-fault="MISFIRE">💥 Cylinder Misfire</button>
+              <button class="fault-btn" data-fault="INJECTOR_FAULT">⛽ Injector Problem</button>
+              <button class="fault-btn" data-fault="SENSOR_DRIFT">📡 Sensor Drift (Transducer Error)</button>
+            </div>
+          </div>
+
+          <!-- Active AI Diagnostic Card -->
+          <div class="hud-grid">
+            <div class="hud-card" style="grid-column: span 6;">
+              <div class="card-title-row">
+                <span class="card-title">🤖 AI Health Diagnosis</span>
+                <span id="diagConfidence" class="brand-badge">98% Confidence</span>
+              </div>
+              <h3 id="diagTitle" style="font-size: 20px; color: #f8fafc; margin-bottom: 8px;">Normal Operation</h3>
+              <div style="margin-bottom: 14px;">
+                Severity: <span id="diagSeverity" class="health-condition-tag normal">NORMAL</span>
+              </div>
+              
+              <!-- Transducer Drift Warning Banner (Feature 4) -->
+              <div id="transducerAlertBox" style="display: none; padding: 12px; border-radius: 8px; background: rgba(56,189,248,0.15); border: 1px solid #38bdf8; margin-bottom: 14px;">
+                <div style="font-weight: 700; color: #38bdf8; margin-bottom: 4px;">🔍 TRANSDUCER DRIFT DISCRIMINATED</div>
+                <div style="font-size: 12px; color: #cbd5e1;">
+                  The system detected a single sensor jump without correlated changes in exhaust temperature, oil pressure, or vibration. Identified as an instrumentation transducer error, not mechanical engine failure.
+                </div>
+              </div>
+
+              <div style="font-size: 13px; color: #cbd5e1; margin-top: 10px;">
+                <strong>Recommended Action:</strong>
+                <div id="diagRecommendation" style="color: #94a3b8; margin-top: 4px; line-height: 1.5;">
+                  Engine healthy. Continue nominal flight profile.
+                </div>
+              </div>
+            </div>
+
+            <!-- AI Feature Contribution / Explanation Bars (Feature 3) -->
+            <div class="hud-card" style="grid-column: span 6;">
+              <div class="card-title-row">
+                <span class="card-title">📊 AI Explanation (Feature Contribution)</span>
+                <span class="brand-badge">SHAP-INSPIRED</span>
+              </div>
+              <p style="font-size: 12px; color: #94a3b8; margin-bottom: 16px;">
+                Relative sensor contribution weights that triggered the active diagnostic classification:
+              </p>
+              <div id="explanationBarsContainer">
+                <div class="explanation-bar-item">
+                  <div class="explanation-header">
+                    <span>Temperature (CHT/EGT)</span>
+                    <span>25%</span>
+                  </div>
+                  <div class="explanation-track">
+                    <div class="explanation-fill bar-grow" style="width: 25%"></div>
+                  </div>
+                </div>
+                <div class="explanation-bar-item">
+                  <div class="explanation-header">
+                    <span>Vibration (RMS)</span>
+                    <span>25%</span>
+                  </div>
+                  <div class="explanation-track">
+                    <div class="explanation-fill bar-grow" style="width: 25%"></div>
+                  </div>
+                </div>
+                <div class="explanation-bar-item">
+                  <div class="explanation-header">
+                    <span>Oil Pressure</span>
+                    <span>25%</span>
+                  </div>
+                  <div class="explanation-track">
+                    <div class="explanation-fill bar-grow" style="width: 25%"></div>
+                  </div>
+                </div>
+                <div class="explanation-bar-item">
+                  <div class="explanation-header">
+                    <span>RPM / Combustion</span>
+                    <span>25%</span>
+                  </div>
+                  <div class="explanation-track">
+                    <div class="explanation-fill bar-grow" style="width: 25%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 5: 📈 PREDICTIONS & RUL               -->
+        <!-- ========================================== -->
+        <section id="tab-predictions" class="tab-content">
+          <div class="hud-grid">
+            <div class="hud-card" style="grid-column: span 6;">
+              <div class="card-title-row">
+                <span class="card-title">⏳ Remaining Useful Life (RUL)</span>
+                <span class="brand-badge">PROTOTYPE ESTIMATE</span>
+              </div>
+              <div style="padding: 20px 0; text-align: center;">
+                <div style="font-size: 48px; font-weight: 800; font-family: monospace; color: #38bdf8;" id="rulHoursVal">
+                  42 Hours
+                </div>
+                <div style="font-size: 13px; color: #94a3b8; margin-top: 6px;">
+                  Estimated flight time remaining until scheduled overhaul (Confidence: <span id="rulConfidenceVal" style="color:#22c55e;">84%</span>)
+                </div>
+              </div>
+            </div>
+
+            <div class="hud-card" style="grid-column: span 6;">
+              <div class="card-title-row">
+                <span class="card-title">📉 Degradation Curve Reference</span>
+              </div>
+              <p style="font-size: 13px; color: #94a3b8; line-height: 1.6;">
+                Calibrated against NASA C-MAPSS multivariate run-to-failure degradation trajectory:
+              </p>
+              <div style="background: #090d16; padding: 14px; border-radius: 8px; font-family: monospace; font-size: 12px; color: #38bdf8; margin-top: 12px;">
+                Health %<br>
+                100 |───────────────────────────┐<br>
+                 90 |                           ╲<br>
+                 80 |                            ╲ (Watch Zone)<br>
+                 70 |                             ╲<br>
+                 60 |                              ╲ (Inspection Horizon)<br>
+                    └────────────────────────────────── Flight Hours<br>
+                     0    100   200   300   400   500
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 6: ✈️ MISSION SIMULATOR & RISK         -->
+        <!-- ========================================== -->
+        <section id="tab-mission" class="tab-content">
+          <div class="hud-grid">
+            <div class="hud-card" style="grid-column: span 6;">
+              <div class="card-title-row">
+                <span class="card-title">Mission Profile Selector</span>
+                <span id="missionActiveBanner" class="target-badge" style="display:none; color:#22c55e;">● ACTIVE</span>
+              </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
+                <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer;">
+                  <input type="radio" name="missionProfile" value="NORMAL" checked>
+                  <strong>Normal Flight</strong> - 10,000 ft Cruise Surveillance
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer;">
+                  <input type="radio" name="missionProfile" value="LONG_ENDURANCE">
+                  <strong>Long Endurance</strong> - 12,000 ft 14-Hour Loiter Profile
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer;">
+                  <input type="radio" name="missionProfile" value="HIGH_ALTITUDE">
+                  <strong>High Altitude</strong> - 18,000 ft Ceiling Envelope Exploration
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer;">
+                  <input type="radio" name="missionProfile" value="HOT_WEATHER">
+                  <strong>Hot Weather Desert</strong> - 8,000 ft High Ambient Thermal Test (42°C)
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer;">
+                  <input type="radio" name="missionProfile" value="RAPID_THROTTLE">
+                  <strong>Rapid Throttle Tactical</strong> - Tactical Transient Power Sortie
+                </label>
+              </div>
+
+              <!-- Controls -->
+              <div style="margin-top: 20px;">
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                  <span>Altitude:</span>
+                  <span id="missionAltDisplay" style="font-weight:700; color:#38bdf8;">10,000 ft</span>
+                </div>
+                <input type="range" min="2000" max="22000" step="500" value="10000" class="replay-scrubber-bar" id="missionAltSlider">
+              </div>
+
+              <div style="margin-top: 14px;">
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                  <span>Ambient Temperature:</span>
+                  <span id="missionTempDisplay" style="font-weight:700; color:#38bdf8;">18°C</span>
+                </div>
+                <input type="range" min="-20" max="50" step="1" value="18" class="replay-scrubber-bar" id="missionTempSlider">
+              </div>
+
+              <button class="control-btn" id="startMissionBtn" style="margin-top: 20px; width:100%; justify-content:center; background:#0284c7; color:#fff; border:none; padding:12px;">
+                🚀 START MISSION SIMULATION
+              </button>
+            </div>
+
+            <!-- Mission Risk Meter (Java / RiskAnalyzer Integration) -->
+            <div class="hud-card" style="grid-column: span 6;">
+              <div class="card-title-row">
+                <span class="card-title">⚠️ Mission Risk Assessment</span>
+                <span id="missionRiskCategory" class="health-condition-tag normal">LOW</span>
+              </div>
+              <div style="padding: 16px 0; text-align: center;">
+                <div style="font-size: 40px; font-weight: 800; font-family: monospace; color: #22c55e;" id="missionRiskScore">
+                  14/100
+                </div>
+                <div style="font-size: 12px; color: #94a3b8; margin-top: 4px;">Cumulative Mission Risk Index</div>
+              </div>
+
+              <div class="sync-progress-track" style="height: 12px;">
+                <div id="missionRiskBar" class="sync-progress-fill" style="width: 14%; background:#22c55e;"></div>
+              </div>
+
+              <div style="margin-top: 18px;">
+                <div style="font-size: 12px; font-weight: 700; color: #94a3b8; margin-bottom: 8px;">Active Risk Factors:</div>
+                <div id="missionRiskFactors" style="display: flex; flex-wrap: wrap; gap: 6px;">
+                  <span class="target-badge">All parameters within nominal bounds</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 7: 🔄 MISSION REPLAY & CSV UPLOAD      -->
+        <!-- ========================================== -->
+        <section id="tab-replay" class="tab-content">
+          <div class="hud-card">
+            <div class="card-title-row">
+              <span class="card-title">Flight Telemetry Replay</span>
+              <span id="replayFlightNameBanner" class="brand-badge">FLIGHT 001 LOADED</span>
+            </div>
+
+            <div style="display: flex; gap: 14px; align-items: center; margin-bottom: 20px;">
+              <select id="flightSelectDropdown" style="background:#1e293b; color:#fff; border:1px solid #334155; padding:8px 14px; border-radius:6px; font-size:13px;">
+                <option value="flight_001">Flight 001 - Nominal Surveillance Cruise</option>
+                <option value="flight_002">Flight 002 - High Altitude Envelope Test</option>
+                <option value="flight_003">Flight 003 - Cooling System Overheat</option>
+                <option value="flight_004">Flight 004 - Journal Bearing Vibration</option>
+              </select>
+
+              <label class="control-btn" style="cursor: pointer;">
+                📁 Upload Telemetry CSV
+                <input type="file" id="csvUploadInput" accept=".csv" style="display: none;">
+              </label>
+            </div>
+
+            <!-- Timeline Scrubber -->
+            <input type="range" min="0" max="10" value="0" class="replay-scrubber-bar" id="replayScrubber">
+
+            <!-- Controls Row -->
+            <div class="replay-controls-row">
+              <div style="display: flex; gap: 10px; align-items: center;">
+                <button class="control-btn" id="replayPlayBtn">▶ Play</button>
+                <button class="control-btn" id="replayRestartBtn">↺ Restart</button>
+                <span style="font-family: monospace; font-size: 14px; color: #38bdf8;" id="replayTimeDisplay">00:00</span>
+              </div>
+
+              <div style="display: flex; gap: 6px; align-items: center;">
+                <span style="font-size: 12px; color: #94a3b8;">Speed:</span>
+                <button class="control-btn speed-btn active" data-speed="1">1x</button>
+                <button class="control-btn speed-btn" data-speed="2">2x</button>
+                <button class="control-btn speed-btn" data-speed="5">5x</button>
+              </div>
+            </div>
+
+            <!-- Replay Mini Display -->
+            <div class="hud-grid" style="margin-top: 24px;">
+              <div class="sensor-metric-card" style="grid-column: span 2;">
+                <span class="sensor-name">RPM</span>
+                <span class="sensor-number" id="replayRpmVal">2350</span>
+              </div>
+              <div class="sensor-metric-card" style="grid-column: span 2;">
+                <span class="sensor-name">CHT</span>
+                <span class="sensor-number" id="replayChtVal">168.2 °C</span>
+              </div>
+              <div class="sensor-metric-card" style="grid-column: span 2;">
+                <span class="sensor-name">EGT</span>
+                <span class="sensor-number" id="replayEgtVal">638.5 °C</span>
+              </div>
+              <div class="sensor-metric-card" style="grid-column: span 2;">
+                <span class="sensor-name">Oil Pressure</span>
+                <span class="sensor-number" id="replayOilPVal">4.24 bar</span>
+              </div>
+              <div class="sensor-metric-card" style="grid-column: span 2;">
+                <span class="sensor-name">Vibration</span>
+                <span class="sensor-number" id="replayVibVal">2.02 mm/s</span>
+              </div>
+              <div class="sensor-metric-card" style="grid-column: span 2;">
+                <span class="sensor-name">Health</span>
+                <span class="sensor-number" id="replayHealthVal" style="color:#22c55e;">96%</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 8: 🔧 MAINTENANCE & FLIGHT REPORT      -->
+        <!-- ========================================== -->
+        <section id="tab-maintenance" class="tab-content">
+          <div class="hud-grid">
+            <div class="hud-card" style="grid-column: span 7;">
+              <div class="card-title-row">
+                <span class="card-title">Scheduled Maintenance Checklist</span>
+                <span class="brand-badge">FLIGHT HOURS: 142.5 h</span>
+              </div>
+              
+              <table class="hud-table">
+                <thead>
+                  <tr>
+                    <th>Component</th>
+                    <th>Status</th>
+                    <th>Due In</th>
+                    <th>Advisory Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Engine Oil & Filter</td>
+                    <td><span style="color:#22c55e;">GOOD</span></td>
+                    <td>18 Flight Hrs</td>
+                    <td>Standard 50-hour oil and filter replacement</td>
+                  </tr>
+                  <tr>
+                    <td>Cylinder Cooling Baffles</td>
+                    <td><span style="color:#22c55e;">CLEAR</span></td>
+                    <td>35 Flight Hrs</td>
+                    <td>Inspect airflow passage and radiator fins</td>
+                  </tr>
+                  <tr>
+                    <td>Propeller & Bearing Balance</td>
+                    <td><span style="color:#22c55e;">NOMINAL</span></td>
+                    <td>42 Flight Hrs</td>
+                    <td>Check vibration RMS and dynamic balance</td>
+                  </tr>
+                  <tr>
+                    <td>Fuel Injection Rail</td>
+                    <td><span style="color:#22c55e;">NORMAL</span></td>
+                    <td>50 Flight Hrs</td>
+                    <td>Ultrasonic cleaning of fuel injector nozzles</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Automated Flight Report Action -->
+            <div class="hud-card" style="grid-column: span 5; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="card-title-row">
+                  <span class="card-title">📄 Automated Flight Intelligence</span>
+                </div>
+                <p style="font-size: 13px; color: #94a3b8; line-height: 1.6;">
+                  Compile an official post-flight technical summary containing extreme boundary telemetry, logged anomalies, computed mission risk, and maintenance directives.
+                </p>
+              </div>
+
+              <button class="control-btn" id="generateReportBtn" style="background:#0284c7; color:#fff; border:none; padding:14px; width:100%; justify-content:center; font-size:14px; margin-top:20px;">
+                📑 GENERATE POST-FLIGHT REPORT
+              </button>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 9: 📁 DATA EXPLORER & CITATIONS       -->
+        <!-- ========================================== -->
+        <section id="tab-data" class="tab-content">
+          <div class="hud-card">
+            <div class="card-title-row">
+              <span class="card-title">Public Grounded Datasets & Citations</span>
+              <select id="datasetSelectorDropdown" style="background:#1e293b; color:#fff; border:1px solid #334155; padding:6px 12px; border-radius:6px; font-size:13px;">
+                <option value="diesel_faults">Dataset A: Mendeley 3500-DEFault (Diesel Engine Faults)</option>
+                <option value="bearing_vibration">Dataset B: Mendeley IC Engine Bearing Vibration</option>
+                <option value="nasa_cmapss">Dataset C: NASA C-MAPSS Aircraft Engine Run-to-Failure</option>
+              </select>
+            </div>
+
+            <div style="overflow-x: auto; margin-top: 14px;">
+              <table class="hud-table" id="datasetSampleTable">
+                <thead id="datasetTableHead"></thead>
+                <tbody id="datasetTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 10: ⚙️ SETTINGS                        -->
+        <!-- ========================================== -->
+        <section id="tab-settings" class="tab-content">
+          <div class="hud-card" style="max-width: 600px;">
+            <div class="card-title-row">
+              <span class="card-title">Prototype Preferences</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:16px; margin-top:14px; font-size:13px;">
+              <div>
+                <label style="display:block; margin-bottom:6px; color:#cbd5e1;">Telemetry Stream Rate:</label>
+                <select style="background:#1e293b; color:#fff; border:1px solid #334155; padding:8px 12px; border-radius:6px; width:100%;">
+                  <option>2 Hz (500ms update rate - Recommended)</option>
+                  <option>5 Hz (200ms update rate - High Resolution)</option>
+                  <option>1 Hz (1000ms update rate - Low Bandwidth)</option>
+                </select>
+              </div>
+
+              <div>
+                <label style="display:block; margin-bottom:6px; color:#cbd5e1;">Twin Tolerance Sensitivity:</label>
+                <select style="background:#1e293b; color:#fff; border:1px solid #334155; padding:8px 12px; border-radius:6px; width:100%;">
+                  <option>Standard Aerospace Aviation Margins (±3%)</option>
+                  <option>High Sensitivity Lab Testing (±1.5%)</option>
+                </select>
+              </div>
+
+              <div>
+                <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                  <input type="checkbox" checked>
+                  Enable Audio Alerts on Critical Engine Fault
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL: POST-FLIGHT REPORT VIEWER -->
+  <div class="modal-overlay" id="flightReportModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span style="font-weight: 700; color: #f8fafc;">📑 Official UAV Flight Intelligence Report</span>
+        <button id="closeReportModalBtn" style="background:transparent; border:none; color:#94a3b8; font-size:20px; cursor:pointer;">&times;</button>
+      </div>
+      <div class="modal-body" id="reportBodyContent">
+        Loading flight report...
+      </div>
+      <div class="modal-footer">
+        <button class="control-btn" id="printReportModalBtn">🖨️ Print / Save PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/telemetry.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/faults.js"></script>
+  <script src="js/mission.js"></script>
+  <script src="js/replay.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

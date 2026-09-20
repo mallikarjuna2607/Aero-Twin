@@ -1,0 +1,139 @@
+/* AeroTwin Smooth Animations */
+
+:root {
+  --rpm-duration: 1.2s;
+  --pulse-glow: rgba(34, 197, 94, 0.4);
+}
+
+/* Rotating Engine Turbine Blade Animation */
+@keyframes spinTurbine {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating-turbine {
+  transform-origin: center center;
+  animation: spinTurbine var(--rpm-duration) linear infinite;
+  will-change: transform;
+}
+
+/* Turbine Stator / Outer Glow Pulse */
+@keyframes pulseRing {
+  0% {
+    box-shadow: 0 0 15px var(--pulse-glow), inset 0 0 10px var(--pulse-glow);
+  }
+  50% {
+    box-shadow: 0 0 35px var(--pulse-glow), inset 0 0 20px var(--pulse-glow);
+  }
+  100% {
+    box-shadow: 0 0 15px var(--pulse-glow), inset 0 0 10px var(--pulse-glow);
+  }
+}
+
+.engine-visual-card {
+  animation: pulseRing 3s ease-in-out infinite;
+}
+
+/* Blinking Status Beacon */
+@keyframes beaconBlink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.88);
+  }
+}
+
+.beacon-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  animation: beaconBlink 1.5s infinite ease-in-out;
+}
+
+.beacon-dot.warning {
+  background-color: #eab308;
+  box-shadow: 0 0 10px #eab308;
+}
+
+.beacon-dot.critical {
+  background-color: #ef4444;
+  box-shadow: 0 0 12px #ef4444;
+  animation: beaconBlink 0.6s infinite ease-in-out;
+}
+
+/* Circular Health SVG Progress Bar Animation */
+.health-circle-bar {
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.5s ease;
+}
+
+/* Smooth Value Counter Transitions */
+.smooth-metric {
+  transition: color 0.3s ease, transform 0.2s ease;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Card Hover Elevation */
+.hud-card {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.25s ease;
+}
+
+.hud-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+}
+
+/* Sync Progress Bar Transitions */
+.sync-progress-fill {
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
+}
+
+/* Fault Alert Flash */
+@keyframes alertPulse {
+  0% {
+    background-color: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.6);
+  }
+  50% {
+    background-color: rgba(239, 68, 68, 0.35);
+    border-color: rgba(239, 68, 68, 1);
+  }
+  100% {
+    background-color: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.6);
+  }
+}
+
+.alert-critical-box {
+  animation: alertPulse 1.2s infinite ease-in-out;
+}
+
+/* Explanation Bar Growth Animation */
+.bar-grow {
+  transition: width 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Tab Fade In */
+.tab-content {
+  display: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.tab-content.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
