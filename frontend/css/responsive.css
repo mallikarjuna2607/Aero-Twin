@@ -1,0 +1,40 @@
+/* AeroTwin Responsive Styles */
+
+@media (max-width: 1024px) {
+  .hud-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .sidebar {
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #1e293b;
+  }
+  .nav-menu {
+    display: flex;
+    overflow-x: auto;
+    padding: 8px;
+    gap: 6px;
+  }
+  .nav-item {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .top-header {
+    padding: 0 16px;
+  }
+  .content-body {
+    padding: 16px;
+  }
+  .hud-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "aerotwin",
+  "version": "1.0.0",
+  "description": "AI-Based Digital Twin for UAV Engine Health Monitoring (DRDO / SIH PS: SIH26054)",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "test": "node ai/training/train_models.py"
+  },
+  "keywords": [
+    "digital-twin",
+    "uav",
+    "drdo",
+    "sih2026",
+    "predictive-maintenance",
+    "aero-piston",
+    "ai",
+    "websocket"
+  ],
+  "author": "AeroTwin Engineering Team",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

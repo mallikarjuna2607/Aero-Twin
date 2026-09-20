@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# C++ Build artifacts
+*.exe
+*.o
+*.obj
+cpp-engine/aerotwin_engine
+cpp-engine/aerotwin_engine.exe
+
+# Java Build artifacts
+java-service/bin/
+java-service/target/
+*.class
+*.jar
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
